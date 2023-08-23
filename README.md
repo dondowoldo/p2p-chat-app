@@ -202,12 +202,6 @@ then it should forward the message to the stored peer (`CHAT_APP_PEER_ADDRESS`) 
 All message and client details should be the same as the received message.
 If the message was broadcasted originally by the application, than it should not forward the message again.
 
-### Try it with your fellows
-
-Find one of your classmates and connect your deployed applications by setting the IP addresses,
-in the environment variables. If it works, invite more and more peers to the circle.
-The goal is to make a circle from each of the applications written by the Green Foxers.
-
 ## Optional Tasks
 
 ### Better looking Main page
@@ -244,3 +238,9 @@ Your page should look like this:
 Create a list on the main page that shows all the usernames that occurred in
 the messages. All the usernames should be marked that has written a message less
 than 10 minutes ago.
+
+### Try it with your fellows
+
+Find one of your classmates and connect your deployed applications by setting the IP addresses,
+in the environment variables. If it works, invite more and more peers to the circle.
+The goal is to make a circle from each of the applications written by the Green Foxers.
