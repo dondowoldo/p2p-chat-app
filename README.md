@@ -34,15 +34,10 @@ fellow Green Foxers*
 * Host: localhost
 * Database: a local SQL database
 
-#### Production environment
+#### Production environment (Optional)
 
-* Host: Heroku or Azure
-* Database: Postgre database on Heroku or SQL Server on Azure
-
-e.g:
-
-![heading with heroku](assets/heroku.png)
-
+* Host the app on Azure
+* Database: SQL Server on Azure
 
 ### Main page
 
