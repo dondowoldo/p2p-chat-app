@@ -189,7 +189,7 @@ The request should send your client id (stored in `CHAT_APP_UNIQUE_ID`) and the 
 #### Java
 
 Either you can use the [RestTemplate](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html)
-object which is already included in spring-boot or the [Retrofit](http://square.github.io/retrofit/) library what we previously tried out on gradle day.
+object which is already included in spring-boot or the [Retrofit](http://square.github.io/retrofit/) library.
 
 #### C#
 
