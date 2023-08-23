@@ -63,12 +63,7 @@ The log should look like this:
 
 The logs should be configurable by an environment variable called `CHAT_APP_LOGLEVEL`. If this variable is set to `ERROR` it should only print the error messages, any other cases it should print both error and info level messages.
 
-#### Read the logs in Heroku
-
-[Read the logs](https://devcenter.heroku.com/articles/logging) on heroku not just on your local machine, to
-achieve it first install the [heroku toolbelt](https://devcenter.heroku.com/articles/heroku-cli)
-
-#### Read the logs in Azure
+#### Read the logs in Azure (Optional)
 
 [Enable and read the logs](https://docs.microsoft.com/en-us/azure/app-service/web-sites-enable-diagnostic-log) on Azure not just on your local machine but using the Azure Portal.
 
