@@ -20,7 +20,6 @@ fellow Green Foxers*
 * About environment variables: [Windows](https://www.youtube.com/watch?v=bEroNNzqlF4), [Linux + Mac](https://www.youtube.com/watch?v=pjh9rU9h22Q)
   * **Java**
     * Reading environment variables in java: [This article](https://docs.oracle.com/javase/tutorial/essential/environment/env.html)
-    * Try your environment variables on heroku as well: [This article](https://devcenter.heroku.com/articles/config-vars)
     * Create a `CHAT_APP_DB_URL` environment variable that stores the url to the local or remote database
     * Create a `CHAT_APP_DB_USERNAME` environment variable that stores the username to the local or remote database
     * Create a `CHAT_APP_DB_PASSWORD` environment variable that stores the password to the local or remote database
