@@ -10,7 +10,6 @@ fellow Green Foxers*
 - Fork this repository under your own account.
 - Clone the forked repository to your computer.
 - Add link to the README.md of your usual repository of this new forked repo.
-- Add tag to your new, forked repository with the name of your class.
 - Please commit your p2p-chat app updates to this repository.
 - Don't forget to create .gitignore file.
 
