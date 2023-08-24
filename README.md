@@ -141,7 +141,7 @@ It should expect a JSON input:
   }
 }
 ```
-(Where the client id is the identifier of the application client detailed in the next story)
+(Where the client id is the identifier of the sender application `CHAT_APP_UNIQUE_ID`)
 
 When the endpoint is requested, it should save the message into the database.
 Then it should response with a simple JSON object and a `200` status as response:
