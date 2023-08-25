@@ -165,7 +165,7 @@ Add a refresh link to your application:
 
 Please test your endpoint using MockMvc.
 You can even check your database in the tests using the following method
-described in [this article](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html#boot-features-testing-spring-boot-applications-testing-autoconfigured-jpa-test).
+described in [this article](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications.autoconfigured-spring-data-jpa).
 
 #### C# ASP.NET
 
