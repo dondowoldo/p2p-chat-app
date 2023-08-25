@@ -132,25 +132,19 @@ It should expect a JSON input:
 {
   "message": {
     "id": 7655482,
-    "username": "EggDice",
+    "username": "otherUserGitHubUserName",
     "text": "How you doin'?",
     "timestamp": 1322018752992
   },
   "client": {
-    "id": "EggDice"
+    "id": "otherUserGitHubUserName"
   }
 }
 ```
 (Where the client id is the identifier of the sender application `CHAT_APP_UNIQUE_ID`)
 
 When the endpoint is requested, it should save the message into the database.
-Then it should response with a simple JSON object and a `200` status as response:
-
-```json
-{
-  "status": "ok"
-}
-```
+Then it should respond with a simple `201` status code as a response.
 
 If any of the fields are missing, it should respond with `401` as status and a JSON
 object like this:
