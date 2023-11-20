@@ -8,6 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 @Setter
 @NoArgsConstructor
 public class Client {
-    @Value("${CHAT_APP_UNIQUE_ID}")
+//    @Value("${CHAT_APP_UNIQUE_ID}")
     private String id;
 }

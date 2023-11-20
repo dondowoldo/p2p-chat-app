@@ -2,6 +2,7 @@ package com.greenfoxacademy.p2pchat.controllers;
 
 import com.greenfoxacademy.p2pchat.dtos.ErrorDTO;
 import com.greenfoxacademy.p2pchat.dtos.MessageDTO;
+import com.greenfoxacademy.p2pchat.services.ApiService;
 import com.greenfoxacademy.p2pchat.services.MessageService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AppRestController {
+    private ApiService apiService;
     private final MessageService messageService;
 
-    public AppRestController(MessageService messageService) {
+    public AppRestController(ApiService apiService, MessageService messageService) {
+        this.apiService = apiService;
         this.messageService = messageService;
     }
 
@@ -26,6 +29,7 @@ public class AppRestController {
             messageService.saveMessage(messageDTO.message());
             return ResponseEntity.status(201).build();
         }
+        apiService.receiveMessage(messageDTO);
         return ResponseEntity.ok().build();
     }
 }

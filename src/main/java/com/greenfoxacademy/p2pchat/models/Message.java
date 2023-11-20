@@ -36,4 +36,11 @@ public class Message {
         this.text = text;
         this.timestamp = Timestamp.from(Instant.now());
     }
+
+    public Message(UUID id, String username, String text, Timestamp timestamp) {
+        this.id = id;
+        this.username = username;
+        this.text = text;
+        this.timestamp = timestamp;
+    }
 }

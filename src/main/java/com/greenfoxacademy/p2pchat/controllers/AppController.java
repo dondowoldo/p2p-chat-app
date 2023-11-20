@@ -1,14 +1,20 @@
 package com.greenfoxacademy.p2pchat.controllers;
 
+import com.greenfoxacademy.p2pchat.P2pChatApplication;
+import com.greenfoxacademy.p2pchat.dtos.ClientDTO;
+import com.greenfoxacademy.p2pchat.dtos.MessageDTO;
 import com.greenfoxacademy.p2pchat.models.Account;
+import com.greenfoxacademy.p2pchat.models.Client;
 import com.greenfoxacademy.p2pchat.models.Message;
 import com.greenfoxacademy.p2pchat.services.AccountService;
 import com.greenfoxacademy.p2pchat.services.MessageService;
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
@@ -52,6 +58,14 @@ public class AppController {
         String username = accountService.findAll().get(0).getUsername();
         Message message = new Message(username,text);
         messageService.saveMessage(message);
+
+        ClientDTO clientDTO = new ClientDTO(username);
+        MessageDTO messageDTO = new MessageDTO(message, clientDTO);
+
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://" + "localhost" + ":8080/api/message/receive";
+        restTemplate.postForObject(url, new HttpEntity<MessageDTO>(messageDTO), MessageDTO.class);
+
         return "redirect:/";
     }
 
