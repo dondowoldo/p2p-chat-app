@@ -16,16 +16,21 @@ fellow Green Foxers*
 ### Set up the environments
 
 #### Use environment variables
-* About environment variables: [Windows](https://www.youtube.com/watch?v=bEroNNzqlF4), [Linux + Mac](https://www.youtube.com/watch?v=pjh9rU9h22Q)
-  * **Java**
-    * Reading environment variables in java: [This article](https://docs.oracle.com/javase/tutorial/essential/environment/env.html)
-    * Create a `CHAT_APP_DB_URL` environment variable that stores the url to the local or remote database
-    * Create a `CHAT_APP_DB_USERNAME` environment variable that stores the username to the local or remote database
-    * Create a `CHAT_APP_DB_PASSWORD` environment variable that stores the password to the local or remote database
-  * **C#**
-    * Reading environment variables in C#: [This article](https://docs.microsoft.com/en-us/dotnet/api/system.environment.getenvironmentvariable)
-    * Try your environment variables on Azure as well: [This article](https://blogs.msdn.microsoft.com/waws/2018/06/12/asp-net-core-settings-for-azure-app-service/)
-    * Create and use a Connection String to access SQL Server
+
+* About environment
+  variables: [Windows](https://www.youtube.com/watch?v=bEroNNzqlF4), [Linux + Mac](https://www.youtube.com/watch?v=pjh9rU9h22Q)
+    * **Java**
+        * Reading environment variables in
+          java: [This article](https://docs.oracle.com/javase/tutorial/essential/environment/env.html)
+        * Create a `CHAT_APP_DB_URL` environment variable that stores the url to the local or remote database
+        * Create a `CHAT_APP_DB_USERNAME` environment variable that stores the username to the local or remote database
+        * Create a `CHAT_APP_DB_PASSWORD` environment variable that stores the password to the local or remote database
+    * **C#**
+        * Reading environment variables in
+          C#: [This article](https://docs.microsoft.com/en-us/dotnet/api/system.environment.getenvironmentvariable)
+        * Try your environment variables on Azure as
+          well: [This article](https://blogs.msdn.microsoft.com/waws/2018/06/12/asp-net-core-settings-for-azure-app-service/)
+        * Create and use a Connection String to access SQL Server
 
 #### Development environment
 
@@ -43,32 +48,36 @@ Create a main page containing a heading that is accessible from the `/` route.
 
 ![heading](assets/heading.png)
 
-
 ### Logging
 
-Each http request should be logged to the standard out (`System.out.println()` in Java or `Console.WriteLine()` in C#). Also if any error has happened in the routes
+Each http request should be logged to the standard out (`System.out.println()` in Java or `Console.WriteLine()` in C#).
+Also if any error has happened in the routes
 it should log the error to the standard error (`System.err.println()` in Java or `Console.Error.WriteLine()` in C#).
 A log message should have the following fields:
 
- - **Path**: The path of the endpoint like: `/`
- - **Method**: The method of the endpoint like: `GET`
- - **Date and Time**: It should print the date in a format like this: `2017-05-16 21:47:19.040`
- - **Log Level**: `INFO` on http requests and `ERROR` on any occured error
- - **Request Data**: It should log all the request params from the endpoint
+- **Path**: The path of the endpoint like: `/`
+- **Method**: The method of the endpoint like: `GET`
+- **Date and Time**: It should print the date in a format like this: `2017-05-16 21:47:19.040`
+- **Log Level**: `INFO` on http requests and `ERROR` on any occured error
+- **Request Data**: It should log all the request params from the endpoint
 
 The log should look like this:
 `2017-05-16 21:47:19.040 INFO Request /message POST text=apple`
 
-The logs should be configurable by an environment variable called `CHAT_APP_LOGLEVEL`. If this variable is set to `ERROR` it should only print the error messages, any other cases it should print both error and info level messages.
+The logs should be configurable by an environment variable called `CHAT_APP_LOGLEVEL`. If this variable is set
+to `ERROR` it should only print the error messages, any other cases it should print both error and info level messages.
 
 #### Read the logs in Azure (Optional)
 
-[Enable and read the logs](https://docs.microsoft.com/en-us/azure/app-service/web-sites-enable-diagnostic-log) on Azure not just on your local machine but using the Azure Portal.
+[Enable and read the logs](https://docs.microsoft.com/en-us/azure/app-service/web-sites-enable-diagnostic-log) on Azure
+not just on your local machine but using the Azure Portal.
 
 ### Client Id, Peer address
 
-Each application should store a unique id (string), that is different from any other. Please use your github username for this purpose.
-Each application should store an IP address of an other application that it will connect to. This is the address where your application forwards the created or received chat messages.
+Each application should store a unique id (string), that is different from any other. Please use your github username
+for this purpose.
+Each application should store an IP address of an other application that it will connect to. This is the address where
+your application forwards the created or received chat messages.
 Both of the values should be loaded from the following environment variables:
 `CHAT_APP_UNIQUE_ID`, `CHAT_APP_PEER_ADDRESS`
 
@@ -83,6 +92,7 @@ If the "Enter" button is clicked, it should create a new user in the database an
 If the username is not specified, it should show an error on the top of the page: "The username field is empty".
 
 At this point we handle only one user for the application:
+
 - The Register page should redirect to the Main page if 1 user is present in the database
 - The Main page should redirect to the Register page if 1 user is not present in the database
 
@@ -92,7 +102,8 @@ Create a form under the title that consists a text input and an update button.
 
 ![username](assets/username.png)
 
-The text input should store the username of the user. If the update button is clicked, then it should update the username in your database (so we still have just 1 user in the database that you can modify).
+The text input should store the username of the user. If the update button is clicked, then it should update the
+username in your database (so we still have just 1 user in the database that you can modify).
 After the update the application should stay or redirect back to this Main page.
 
 If the username is not specified it should show an error on the top of the page: "The username field is empty".
@@ -103,8 +114,8 @@ Add a list of messages to your main page. Each message should have a `username` 
 
 The page should have a default message in its list:
 
- - `username`: App
- - `text`: Hi there! Submit your message using the send button!
+- `username`: App
+- `text`: Hi there! Submit your message using the send button!
 
 All the other messages should appear under this message.
 
@@ -115,10 +126,10 @@ Under the messages there should be a form that can add a new message.
 If the send button is clicked, it should store a new message in the database and it should show up in the list.
 Each message should have a stored:
 
- - `username`
- - `text`
- - `timestamp` when the message was created
- - Random generated `id` (between 1000000 - 9999999)
+- `username`
+- `text`
+- `timestamp` when the message was created
+- Random generated `id` (between 1000000 - 9999999)
 
 ![more messages](assets/more-messages.png)
 
@@ -141,6 +152,7 @@ It should expect a JSON input:
   }
 }
 ```
+
 (Where the client id is the identifier of the sender application `CHAT_APP_UNIQUE_ID`)
 
 When the endpoint is requested, it should save the message into the database.
@@ -165,11 +177,13 @@ Add a refresh link to your application:
 
 Please test your endpoint using MockMvc.
 You can even check your database in the tests using the following method
-described in [this article](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications.autoconfigured-spring-data-jpa).
+described
+in [this article](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing.spring-boot-applications.autoconfigured-spring-data-jpa).
 
 #### C# ASP.NET
 
-Please test your endpoint using `WebApplicationFactory`. You can even use the [in-memory database with EF Core](https://docs.microsoft.com/en-us/ef/core/miscellaneous/testing/in-memory) to test.
+Please test your endpoint using `WebApplicationFactory`. You can even use
+the [in-memory database with EF Core](https://docs.microsoft.com/en-us/ef/core/miscellaneous/testing/in-memory) to test.
 
 ### Broadcast new message
 
@@ -180,17 +194,20 @@ The request should send your client id (stored in `CHAT_APP_UNIQUE_ID`) and the 
 
 #### Java
 
-Either you can use the [RestTemplate](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html)
+Either you can use
+the [RestTemplate](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html)
 object which is already included in spring-boot or the [Retrofit](http://square.github.io/retrofit/) library.
 
 #### C#
 
-Use the `HttpClient` to send an HTTP request: https://blog.jayway.com/2012/03/13/httpclient-makes-get-and-post-very-simple/
+Use the `HttpClient` to send an HTTP
+request: https://blog.jayway.com/2012/03/13/httpclient-makes-get-and-post-very-simple/
 
 ### Forward received message
 
 When the application receives a message from a peer, and the message is not originally broadcasted by the application,
-then it should forward the message to the stored peer (`CHAT_APP_PEER_ADDRESS`) by submitting an HTTP request to its `/api/message/receive` endpoint.
+then it should forward the message to the stored peer (`CHAT_APP_PEER_ADDRESS`) by submitting an HTTP request to
+its `/api/message/receive` endpoint.
 All message and client details should be the same as the received message.
 If the message was broadcasted originally by the application, than it should not forward the message again.
 
@@ -209,6 +226,7 @@ Make the Register page pretty using bootstrap.
 Your page should look like this:
 
 ![pretty enter](assets/pretty-register.png)
+
 - Feel free to add a specific header image for your Register page (and even your messages page)
 
 ### Auto refresh
@@ -218,12 +236,14 @@ Your page should look like this:
 
 ### Auto refresh Vol 2
 
-- The refreshing every now and then is not the perfect solution, the page should refresh exactly when a new message arrives
-- In order to do that you need to have a direct connection between your server and every single browser that currently has the page open (aka client)
+- The refreshing every now and then is not the perfect solution, the page should refresh exactly when a new message
+  arrives
+- In order to do that you need to have a direct connection between your server and every single browser that currently
+  has the page open (aka client)
 - We can do that with websockets (this is exactly how web based chat applications work)
 - Check it out:
-  - Java Spring: [STOMP messaging](https://spring.io/guides/gs/messaging-stomp-websocket/)
-  - C# ASP.NET: [Use SignalR](https://www.asp.net/signalr)
+    - Java Spring: [STOMP messaging](https://spring.io/guides/gs/messaging-stomp-websocket/)
+    - C# ASP.NET: [Use SignalR](https://www.asp.net/signalr)
 
 ### List of users
 
