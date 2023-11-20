@@ -2,10 +2,8 @@ package com.greenfoxacademy.p2pchat.controllers;
 
 import com.greenfoxacademy.p2pchat.dtos.ErrorDTO;
 import com.greenfoxacademy.p2pchat.dtos.MessageDTO;
-import com.greenfoxacademy.p2pchat.models.Message;
 import com.greenfoxacademy.p2pchat.services.MessageService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

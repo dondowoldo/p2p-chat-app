@@ -14,7 +14,6 @@ import java.util.UUID;
 @Setter
 public class Message {
     @Id
-    @UuidGenerator(style = UuidGenerator.Style.RANDOM)
     private UUID id;
     private String username;
     private String text;
@@ -22,9 +21,17 @@ public class Message {
 
     public Message() {
         this.timestamp = Timestamp.from(Instant.now());
+        this.id = UUID.randomUUID();
     }
 
     public Message(String username, String text) {
+        this.username = username;
+        this.text = text;
+        this.timestamp = Timestamp.from(Instant.now());
+        this.id = UUID.randomUUID();
+    }
+    public Message(UUID id, String username, String text) {
+        this.id = id;
         this.username = username;
         this.text = text;
         this.timestamp = Timestamp.from(Instant.now());
