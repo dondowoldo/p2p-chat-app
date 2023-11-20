@@ -5,6 +5,7 @@ import com.greenfoxacademy.p2pchat.repositories.MessageRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class MessageService {
@@ -21,4 +22,10 @@ public class MessageService {
     public Message saveMessage(Message message) {
         return messageRepo.save(message);
     }
+
+    public boolean existsById(UUID uuid) {
+        return messageRepo.existsById(uuid);
+    }
+
+
 }
