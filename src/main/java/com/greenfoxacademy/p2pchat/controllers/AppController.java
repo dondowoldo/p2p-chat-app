@@ -1,6 +1,7 @@
 package com.greenfoxacademy.p2pchat.controllers;
 
 import com.greenfoxacademy.p2pchat.models.Account;
+import com.greenfoxacademy.p2pchat.models.Message;
 import com.greenfoxacademy.p2pchat.services.AccountService;
 import com.greenfoxacademy.p2pchat.services.MessageService;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -32,14 +34,24 @@ public class AppController {
     }
 
     @PutMapping("/")
-    public String index(Model model, String username) {
-        Optional<Account> optionalCurrent = accountService.findByUsername(username);
-        if (optionalCurrent.isEmpty()) {
-            model.addAttribute("error", "Username not found");
-            model.addAttribute("username", username);
-            return "index";
+    public String index(String username) {
+        Account account = accountService.findAll().get(0);
+        if (account == null) {
+            return "redirect:/register";
         }
-        AccountService.setCurrentAccount(optionalCurrent.get());
+        account.setUsername(username);
+        accountService.saveUser(account);
+        return "redirect:/";
+    }
+
+    @PostMapping("/")
+    public String postMessage(String text) {
+        if (text == null || text.isEmpty()) {
+            return "/";
+        }
+        String username = accountService.findAll().get(0).getUsername();
+        Message message = new Message(username,text);
+        messageService.saveMessage(message);
         return "redirect:/";
     }
 
@@ -53,12 +65,11 @@ public class AppController {
 
     @PostMapping("/register")
     public String register(Model model, String username) {
-        if (accountService.existsByUsername(username)) {
-            model.addAttribute("username", username);
-            model.addAttribute("error", "This username is already taken!");
+        if (username == null || username.isEmpty()) {
+            model.addAttribute("error", "The username field is empty");
             return "register";
         }
-        AccountService.setCurrentAccount(accountService.saveUser(new Account(username)));
+        accountService.saveUser(new Account(username));
         return "redirect:/";
     }
 }

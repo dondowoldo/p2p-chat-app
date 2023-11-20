@@ -14,9 +14,6 @@ import java.util.Optional;
 @Setter
 public class AccountService {
     private AccountRepo accountRepo;
-    @Getter
-    @Setter
-    private static Account currentAccount = null;
 
     public AccountService(AccountRepo accountRepo) {
         this.accountRepo = accountRepo;

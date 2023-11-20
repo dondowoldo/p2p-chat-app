@@ -16,8 +16,7 @@ public class Message {
     @Id
     @UuidGenerator(style = UuidGenerator.Style.RANDOM)
     private UUID id;
-    @ManyToOne
-    private Account account;
+    private String username;
     private String text;
     private Timestamp timestamp;
 
@@ -25,8 +24,8 @@ public class Message {
         this.timestamp = Timestamp.from(Instant.now());
     }
 
-    public Message(Account account, String text) {
-        this.account = account;
+    public Message(String username, String text) {
+        this.username = username;
         this.text = text;
         this.timestamp = Timestamp.from(Instant.now());
     }

@@ -27,21 +27,20 @@ public class P2pChatApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Account account = new Account("Username");
-
-		Message m1 = new Message(account, "blahblah");
-		Message m2 = new Message(account, "blahblahblah");
-		Message m3 = new Message(account, "blahblahblahbah");
-
-		accountRepo.save(account);
-		messageRepo.save(m1);
-		messageRepo.save(m2);
-		messageRepo.save(m3);
-
-		System.out.println(m1.getId());
-		System.out.println(m2.getId());
-		System.out.println(m3.getId());
-
-
+//		Account account = new Account("Username");
+//
+//		Message m1 = new Message("retard", "blahblah");
+//		Message m2 = new Message("kokon", "blahblahblah");
+//		Message m3 = new Message(account.getUsername(), "blahblahblahbah");
+//
+//		accountRepo.save(account);
+//		messageRepo.save(m1);
+//		messageRepo.save(m2);
+//		messageRepo.save(m3);
+//
+//		System.out.println(m1.getId());
+//		System.out.println(m2.getId());
+//		System.out.println(m3.getId());
+//
 	}
 }

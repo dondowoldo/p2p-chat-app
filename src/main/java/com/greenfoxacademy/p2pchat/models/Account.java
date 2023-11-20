@@ -17,9 +17,6 @@ public class Account {
     private Long id;
     @Column(unique = true)
     private String username;
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "account")
-    private List<Message> messages;
-
     public Account(String username) {
         this.username = username;
     }
