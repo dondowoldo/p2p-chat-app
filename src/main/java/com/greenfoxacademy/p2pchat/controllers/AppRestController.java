@@ -2,7 +2,8 @@ package com.greenfoxacademy.p2pchat.controllers;
 
 import com.greenfoxacademy.p2pchat.dtos.ErrorDTO;
 import com.greenfoxacademy.p2pchat.dtos.MessageDTO;
-import com.greenfoxacademy.p2pchat.services.ApiService;
+import com.greenfoxacademy.p2pchat.models.Account;
+import com.greenfoxacademy.p2pchat.services.AccountService;
 import com.greenfoxacademy.p2pchat.services.MessageService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AppRestController {
-    private ApiService apiService;
-    private final MessageService messageService;
+    private MessageService messageService;
+    private AccountService accountService;
 
-    public AppRestController(ApiService apiService, MessageService messageService) {
-        this.apiService = apiService;
+    public AppRestController(MessageService messageService, AccountService accountService) {
         this.messageService = messageService;
+        this.accountService = accountService;
     }
 
     @PostMapping("/api/message/receive")
@@ -26,10 +27,11 @@ public class AppRestController {
             return ResponseEntity.status(401).body(new ErrorDTO("error", message));
         }
         if (!messageService.existsById(messageDTO.message().getId())) {
+            accountService.saveUser(new Account(messageDTO.client().id()));
             messageService.saveMessage(messageDTO.message());
             return ResponseEntity.status(201).build();
         }
-        apiService.receiveMessage(messageDTO);
+//        apiService.receiveMessage(messageDTO);
         return ResponseEntity.ok().build();
     }
 }
