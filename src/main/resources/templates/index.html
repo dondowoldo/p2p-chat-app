@@ -12,7 +12,18 @@
 <div class="container">
 
     <h1>Peer to Peer Chat Program</h1>
-
+    <form th:action="@{/}" th:method="put">
+        <p th:if="${error}" th:text="${error}" style="color: red"></p>
+        <label class="form-label">Your username:
+            <input class="form-control" type="text" required name="username" th:value="${username}">
+        </label>
+    </form>
+    <div>
+        <ul th:each="message : ${messages}">
+            <li th:text="${message.account.username}"></li>
+            <li th:text="${message.text}"></li>
+        </ul>
+    </div>
 
 
 

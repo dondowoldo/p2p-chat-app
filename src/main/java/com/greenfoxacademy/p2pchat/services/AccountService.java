@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Getter
@@ -31,5 +32,9 @@ public class AccountService {
 
     public Account saveUser(Account account) {
         return accountRepo.save(account);
+    }
+
+    public Optional<Account> findByUsername(String username) {
+        return accountRepo.findByUsername(username);
     }
 }
