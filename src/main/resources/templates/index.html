@@ -55,12 +55,11 @@
     <div class="row justify-content-center">
         <div class="col-6">
             <form th:action="@{/}" th:method="post">
-        <textarea class="form-control" cols="15" rows="2" name="text" required style="resize: none">
-        </textarea>
+        <textarea class="form-control" cols="15" rows="2" name="text" required style="resize: none" placeholder="Type your message here..."></textarea>
                 <div class="mt-2">
                     <button type="submit" class="btn btn-primary mr-1">Send</button>
                     <a th:href="@{/}">
-                        <button class="btn btn-success">Refresh</button>
+                        <button type="button" class="btn btn-success">Refresh</button>
                     </a>
                 </div>
             </form>

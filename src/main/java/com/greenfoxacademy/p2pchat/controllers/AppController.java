@@ -51,9 +51,10 @@ public class AppController {
     }
 
     @PostMapping("/")
-    public String postMessage(String text) {
+    public String postMessage(Model model, String text) {
         if (text == null || text.isEmpty()) {
-            return "/";
+            model.addAttribute("messages", messageService.findAllMessages());
+            return "index";
         }
         String username = accountService.findAll().get(0).getUsername();
         Message message = new Message(username, text);
