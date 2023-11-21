@@ -1,14 +1,19 @@
 package com.greenfoxacademy.p2pchat.services;
 
 import com.greenfoxacademy.p2pchat.dtos.MessageDTO;
+import com.greenfoxacademy.p2pchat.dtos.PeerDTO;
 import com.greenfoxacademy.p2pchat.models.Message;
 import com.greenfoxacademy.p2pchat.repositories.MessageRepo;
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.ResourceAccessException;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class MessageService {
@@ -55,5 +60,13 @@ public class MessageService {
         return "Missing field(s): " + String.join(", ", messages);
     }
 
-
+    public void postMessageObject(MessageDTO messageDTO, PeerDTO peer) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://" + peer.peerIp() + ":8080/api/message/receive";
+        try {
+            restTemplate.postForObject(url, new HttpEntity<>(messageDTO), MessageDTO.class);
+            System.out.println("Message sent");
+        } catch (ResourceAccessException | HttpClientErrorException ignored) {
+        }
+    }
 }
