@@ -58,10 +58,7 @@ public class AppController {
         String username = accountService.findAll().get(0).getUsername();
         Message message = new Message(username, text);
         messageService.saveMessage(message);
-
-        MessageDTO messageDTO = new MessageDTO(message, client);
-
-        messageService.postMessageObject(messageDTO, peer);
+        messageService.postMessageObject(new MessageDTO(message, client), peer);
         return "redirect:/";
     }
 
