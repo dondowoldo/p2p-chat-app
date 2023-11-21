@@ -15,7 +15,6 @@ public class Account {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(unique = true)
     private String username;
     public Account(String username) {
         this.username = username;

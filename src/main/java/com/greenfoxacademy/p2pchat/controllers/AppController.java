@@ -65,7 +65,7 @@ public class AppController {
 
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://" + peer.getPeerIp() + ":8080/api/message/receive";
-        restTemplate.postForObject(url, new HttpEntity<MessageDTO>(messageDTO), MessageDTO.class);
+        restTemplate.postForObject(url, new HttpEntity<>(messageDTO), MessageDTO.class);
 
         return "redirect:/";
     }
