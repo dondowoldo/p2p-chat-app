@@ -7,6 +7,7 @@ import org.hibernate.annotations.UuidGenerator;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.Random;
 import java.util.UUID;
 
 @Entity
@@ -14,30 +15,30 @@ import java.util.UUID;
 @Setter
 public class Message {
     @Id
-    private UUID id;
+    private Long id;
     private String username;
     private String text;
     private Timestamp timestamp;
 
     public Message() {
         this.timestamp = Timestamp.from(Instant.now());
-        this.id = UUID.randomUUID();
+        this.id = new Random().nextLong(9000000) + 1000000;
     }
 
     public Message(String username, String text) {
         this.username = username;
         this.text = text;
         this.timestamp = Timestamp.from(Instant.now());
-        this.id = UUID.randomUUID();
+        this.id = new Random().nextLong(9000000) + 1000000;
     }
-    public Message(UUID id, String username, String text) {
+    public Message(Long id, String username, String text) {
         this.id = id;
         this.username = username;
         this.text = text;
         this.timestamp = Timestamp.from(Instant.now());
     }
 
-    public Message(UUID id, String username, String text, Timestamp timestamp) {
+    public Message(Long id, String username, String text, Timestamp timestamp) {
         this.id = id;
         this.username = username;
         this.text = text;

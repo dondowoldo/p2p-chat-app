@@ -31,8 +31,8 @@ public class MessageService {
         return messageRepo.save(message);
     }
 
-    public boolean existsById(UUID uuid) {
-        return messageRepo.existsById(uuid);
+    public boolean existsById(Long id) {
+        return messageRepo.existsById(id);
     }
 
     public String validateDTO(MessageDTO messageDTO) {
