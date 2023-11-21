@@ -46,7 +46,7 @@ public class MessageService {
         if (messageDTO.message().getTimestamp() == null) {
             messages.add("message.timestamp");
         }
-        if (messageDTO.client().getId() == null || messageDTO.client().getId().isEmpty()) {
+        if (messageDTO.client().id() == null || messageDTO.client().id().isEmpty()) {
             messages.add("client.id");
         }
         if (messages.isEmpty()) {
