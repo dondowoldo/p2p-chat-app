@@ -14,10 +14,10 @@
     <h1>Enter</h1>
     <form th:action="@{/register}" th:method="post">
         <p th:if="${error}" th:text="${error}" style="color: red"></p>
-        <label class="form-label">Choose your name:
-            <input class="form-control" type="text" required name="username">
-        </label>
-        <button class="btn btn-primary">Enter</button>
+            <label class="form-label">Choose your name:
+                <input class="form-control" type="text" required name="username">
+            </label>
+            <button class="btn btn-primary">Enter</button>
     </form>
 
 
