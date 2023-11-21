@@ -27,23 +27,43 @@
         </div>
     </div>
 
-    <div>
-        <ul th:each="message : ${messages}">
-            <li th:text="${message.text}"></li>
-            <li th:text="${message.username}"></li>
-        </ul>
+    <div class="row justify-content-center mt-1 mb-5">
+        <div class="col-6">
+            <div class="list-group">
+                <a th:each="message : ${messages}" href="#" class="list-group-item list-group-item-action"
+                   aria-current="true">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1" th:text="${message.username}"></h5>
+                        <small th:text="${#dates.format(message.timestamp, 'dd-MM-yyyy HH:mm:ss')}"></small>
+                    </div>
+                    <p class="mb-1" th:text="${message.text}"></p>
+                    <!--            <small>And some small print.</small>-->
+                </a>
+            </div>
+        </div>
     </div>
+
+
+    <!--    <div>-->
+    <!--        <ul th:each="message : ${messages}">-->
+    <!--            <li th:text="${message.text}"></li>-->
+    <!--            <li th:text="${message.username}"></li>-->
+    <!--        </ul>-->
+    <!--    </div>-->
+
 
     <div class="row justify-content-center">
         <div class="col-6">
             <form th:action="@{/}" th:method="post">
-        <textarea class="form-control" cols="15" rows="2" name="text" required>
+        <textarea class="form-control" cols="15" rows="2" name="text" required style="resize: none">
         </textarea>
-                <button type="submit" class="btn btn-primary">Send</button>
+                <div class="mt-2">
+                    <button type="submit" class="btn btn-primary mr-1">Send</button>
+                    <a th:href="@{/}">
+                        <button class="btn btn-success">Refresh</button>
+                    </a>
+                </div>
             </form>
-            <a th:href="@{/}">
-                <button class="btn btn-success">Refresh</button>
-            </a>
         </div>
     </div>
 
