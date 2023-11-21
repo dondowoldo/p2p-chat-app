@@ -27,11 +27,10 @@ public class AppRestController {
             return ResponseEntity.status(401).body(new ErrorDTO("error", message));
         }
         if (!messageService.existsById(messageDTO.message().getId())) {
-            accountService.saveUser(new Account(messageDTO.client().id()));
+            accountService.saveUser(new Account(messageDTO.client().getId()));
             messageService.saveMessage(messageDTO.message());
             return ResponseEntity.status(201).build();
         }
-//        apiService.receiveMessage(messageDTO);
         return ResponseEntity.ok().build();
     }
 }
