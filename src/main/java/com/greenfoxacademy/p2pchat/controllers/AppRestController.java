@@ -6,12 +6,10 @@ import com.greenfoxacademy.p2pchat.dtos.MessageDTO;
 import com.greenfoxacademy.p2pchat.dtos.PeerDTO;
 import com.greenfoxacademy.p2pchat.services.AccountService;
 import com.greenfoxacademy.p2pchat.services.MessageService;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class AppRestController {
@@ -37,9 +35,7 @@ public class AppRestController {
             messageService.saveMessage(messageDTO.message());
         }
         if (!messageDTO.client().id().equals(client.id())) {
-            RestTemplate restTemplate = new RestTemplate();
-            String url = "http://" + peer.peerIp() + ":8080/api/message/receive";
-            restTemplate.postForObject(url, new HttpEntity<>(messageDTO), MessageDTO.class);
+            messageService.postMessageObject(messageDTO, peer);
         }
         return ResponseEntity.status(201).build();
     }

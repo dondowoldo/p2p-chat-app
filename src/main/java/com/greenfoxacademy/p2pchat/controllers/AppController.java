@@ -7,13 +7,11 @@ import com.greenfoxacademy.p2pchat.models.Account;
 import com.greenfoxacademy.p2pchat.models.Message;
 import com.greenfoxacademy.p2pchat.services.AccountService;
 import com.greenfoxacademy.p2pchat.services.MessageService;
-import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class AppController {
@@ -58,15 +56,12 @@ public class AppController {
             return "/";
         }
         String username = accountService.findAll().get(0).getUsername();
-        Message message = new Message(username,text);
+        Message message = new Message(username, text);
         messageService.saveMessage(message);
 
         MessageDTO messageDTO = new MessageDTO(message, client);
 
-        RestTemplate restTemplate = new RestTemplate();
-        String url = "http://" + peer.peerIp() + ":8080/api/message/receive";
-        restTemplate.postForObject(url, new HttpEntity<>(messageDTO), MessageDTO.class);
-
+        messageService.postMessageObject(messageDTO, peer);
         return "redirect:/";
     }
 
