@@ -36,14 +36,12 @@ public class AppRestController {
         }
         if (!messageService.existsById(messageDTO.message().getId())) {
             messageService.saveMessage(messageDTO.message());
-            return ResponseEntity.status(201).build();
         }
         if (!messageDTO.client().getId().equals(client.getId())) {
             RestTemplate restTemplate = new RestTemplate();
             String url = "http://" + peer.getPeerIp() + ":8080/api/message/receive";
             restTemplate.postForObject(url, new HttpEntity<>(messageDTO), MessageDTO.class);
         }
-
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(201).build();
     }
 }
