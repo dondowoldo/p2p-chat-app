@@ -7,17 +7,20 @@ import com.greenfoxacademy.p2pchat.models.Account;
 import com.greenfoxacademy.p2pchat.models.Message;
 import com.greenfoxacademy.p2pchat.services.AccountService;
 import com.greenfoxacademy.p2pchat.services.MessageService;
+import com.greenfoxacademy.p2pchat.utils.SortType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import java.util.Optional;
+import static com.greenfoxacademy.p2pchat.utils.Settings.*;
+
 @Controller
 public class AppController {
 
     private AccountService accountService;
-
     private MessageService messageService;
     private PeerDTO peer;
     private ClientDTO client;
@@ -31,11 +34,20 @@ public class AppController {
     }
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model,
+                        Optional<SortType> sortType,
+                        Optional<Integer> pageNumber,
+                        Optional<Integer> pageSize) {
         if (accountService.findAll().isEmpty()) {
             return "redirect:/register";
         }
-        model.addAttribute("messages", messageService.findAllMessages());
+        sortType.ifPresent(type -> currentSortType = type);
+        pageSize.ifPresent(value -> currentPageSize = value);
+        model.addAttribute("messages", messageService.findPageSort(pageNumber.orElse(1) - 1, currentPageSize, currentSortType));
+        model.addAttribute("pageSizes", PAGE_SIZES);
+        model.addAttribute("currentPageSize", currentPageSize);
+        model.addAttribute("currentSortType", currentSortType);
+//        model.addAttribute("messages", messageService.findAllMessages());
         return "index";
     }
 

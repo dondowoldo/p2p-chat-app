@@ -69,6 +69,57 @@
 
 
 </div>
+<footer class="container pb-5">
+    <hr class="border border-primary border-2 opacity-75">
+    <div class="d-flex justify-content-around">
+        <form th:method="get" class="row align-items-end mt-3">
+            <div class="col-auto">
+                <div class="row">
+                    <label class="col-form-label" for="select1">Show Posts:</label>
+                    <div class="d-flex flex-wrap">
+                        <select id="select1" name="pageSize" onchange="this.form.submit()" class="form-select">
+                            <option th:each="size : ${pageSizes}"
+                                    th:text="${size}"
+                                    th:selected="${size} == ${currentPageSize} ? true : false"
+                            ></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form th:method="get" class="row align-items-end mt-3">
+            <div class="col-auto">
+                <div class="row">
+                    <label class="col-form-label" for="select2">Page:</label>
+                    <div class="d-flex flex-wrap">
+                        <select id="select2" name="pageNumber" onchange="this.form.submit()" class="form-select">
+                            <option th:each="i : ${#numbers.sequence(0, messages.getTotalPages() - 1)}"
+                                    th:text="${i + 1}"
+                                    th:selected="${i} == ${messages.getPageable().getPageNumber()} ? true : false"
+                            ></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form th:method="get" class="row align-items-end mt-3">
+            <div class="col-auto">
+                <div class="row">
+                    <label class="col-form-label" for="select3">Sort:</label>
+                    <div class="d-flex flex-wrap">
+                        <select id="select3" name="sortType" onchange="this.form.submit()" class="form-select">
+                            <option th:each="type : ${T(com.greenfoxacademy.p2pchat.utils.SortType).values()}"
+                                    th:value="${type}"
+                                    th:text="${type.getName()}"
+                                    th:selected="${type} == ${currentSortType} ? true : false">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</footer>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
